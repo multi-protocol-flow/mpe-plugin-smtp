@@ -1,0 +1,8 @@
+/target
+/dist
+*.zip
+*.zip.sha256
+/mpe_plugin_smtp
+/mpe_plugin_smtp.exe
+mpe_plugin_smtp
+mpe_plugin_smtp.exe

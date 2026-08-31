@@ -1,0 +1,13 @@
+{
+  "name": "smtp",
+  "version": "0.1.0",
+  "description": "SMTP protocol plugin: connect/send/disconnect",
+  "entry": {
+    "command": "./mpe_plugin_smtp"
+  },
+  "env": {},
+  "permissions": [],
+  "capabilities": { "streaming": true },
+  "locales": ["zh-CN", "en-US"],
+  "default_locale": "en-US"
+}

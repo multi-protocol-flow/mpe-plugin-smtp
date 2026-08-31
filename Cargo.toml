@@ -1,0 +1,29 @@
+[package]
+name = "mpe-plugin-smtp"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Third-party development: public SDK only, never host types (flow-engine-core etc.)
+mpe-plugin-sdk = { git = "https://github.com/multi-protocol-flow/mpe-plugin-sdk.git", tag = "v0.1.0" }
+# SMTP client — ring backend (consistent with the host), no aws-lc-rs.
+lettre = { version = "0.11", default-features = false, features = ["tokio1", "tokio1-rustls", "ring", "webpki-roots", "smtp-transport", "builder", "pool", "hostname"] }
+# Crypto (AES-256-GCM) for legacy encrypted passwords/tokens — copied from
+# flow-engine-crypto (sidecar boundary: the plugin never links host crates).
+aes-gcm = { version = "0.10", features = ["std"] }
+base64 = "0.22"
+keyring = "3"
+rand = "0.8"
+zeroize = "1"
+thiserror = "1.0"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+log = "0.4"
+
+[profile.release]
+opt-level = 3
+
+[[bin]]
+name = "mpe_plugin_smtp"
+path = "src/main.rs"

@@ -1,0 +1,99 @@
+{
+  "_version": 1,
+  "flow": {
+    "uuid": "smtp-e2e-flow",
+    "name": "SMTP E2E Flow",
+    "nodes": [
+      {
+        "uuid": "entry-smtp",
+        "type": "entry",
+        "name": "Entry",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "data": {
+          "type": "entry"
+        },
+        "ports": null
+      },
+      {
+        "uuid": "smtp-connect-001",
+        "type": "smtp:connect",
+        "name": "SMTP Connect",
+        "position": {
+          "x": 200,
+          "y": 0
+        },
+        "data": {
+          "type": "smtp:connect",
+          "host": "smtp.example.com",
+          "port": 587,
+          "tls_mode": "starttls",
+          "connect_timeout_ms": 30000
+        },
+        "ports": null
+      },
+      {
+        "uuid": "smtp-send-001",
+        "type": "smtp:send",
+        "name": "Send Email",
+        "position": {
+          "x": 400,
+          "y": 0
+        },
+        "data": {
+          "type": "smtp:send",
+          "connection_id": "smtp-connect-001",
+          "from": "sender@example.com",
+          "to": [
+            "recipient@example.com"
+          ],
+          "subject": "Test Email",
+          "body_type": "text",
+          "body": "This is a test email",
+          "timeout_ms": 30000
+        },
+        "ports": null
+      },
+      {
+        "uuid": "smtp-disconnect-001",
+        "type": "smtp:disconnect",
+        "name": "SMTP Disconnect",
+        "position": {
+          "x": 600,
+          "y": 0
+        },
+        "data": {
+          "type": "smtp:disconnect",
+          "connection_id": "smtp-connect-001"
+        },
+        "ports": null
+      }
+    ],
+    "connections": [
+      {
+        "id": "conn-entry-to-connect",
+        "source_node_uuid": "entry-smtp",
+        "target_node_uuid": "smtp-connect-001",
+        "source_port_id": "out",
+        "target_port_id": "in"
+      },
+      {
+        "id": "conn-connect-to-send",
+        "source_node_uuid": "smtp-connect-001",
+        "target_node_uuid": "smtp-send-001",
+        "source_port_id": "true",
+        "target_port_id": "in"
+      },
+      {
+        "id": "conn-send-to-disconnect",
+        "source_node_uuid": "smtp-send-001",
+        "target_node_uuid": "smtp-disconnect-001",
+        "source_port_id": "true",
+        "target_port_id": "in"
+      }
+    ]
+  },
+  "_meta": null
+}
