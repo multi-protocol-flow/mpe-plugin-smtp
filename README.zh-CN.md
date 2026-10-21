@@ -33,3 +33,7 @@ MPE_SMTP_URI=smtp://localhost:1025 cargo test --release -- --ignored --test-thre
 
 将构建好的二进制文件放置在 `plugin.json` 指定的路径（默认同级目录 `./mpe_plugin_smtp`），并将插件目录配置到 `MPE_PLUGIN_DIR`。
 `capabilities.streaming: true` 使插件进程在执行期间保持常驻，以维持连接池状态。
+
+## 许可证
+
+MIT，详见 [LICENSE](./LICENSE)。

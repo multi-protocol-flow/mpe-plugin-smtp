@@ -80,3 +80,7 @@ ignores them and relies on the host to abort a hung execution.
 - `echo/` SMTP service is part of the external (gitignored) echo stack, not
   this repo — integration tests default to localhost standard ports and are
   overridable via `MPE_SMTP_URI`.
+
+## License
+
+MIT — see [LICENSE](./LICENSE).
